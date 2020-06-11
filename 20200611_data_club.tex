@@ -1,0 +1,177 @@
+%% Ankur Sinha
+
+%% packages %%
+% support for coloured text
+\usepackage{color}
+% IPA
+\usepackage{tipa}
+\usepackage[scale=2]{ccicons}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{mindmap, arrows.meta, positioning, arrows}
+\usepackage{pgfplots}
+% Define the colours we use for E and I in all graphs
+\definecolor{SinhaBlueE}{HTML}{3b4cc0}
+\definecolor{SinhaRedI}{HTML}{f7a789}
+\pgfmathdeclarefunction{gaussnew}{4}{%nu, eta, eps, omega
+  \pgfmathparse{(#1*((2*exp(-(((x-((#2+#3)/2))/((#2-#3)/(2*sqrt(-ln(#4/2)))))^2))) -#4))}%chktex 36
+}
+\usepackage{jneurosci}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[style=nature,backend=biber,autocite=footnote]{biblatex}
+% \addbibresource{/home/asinha/Documents/01_Readables/00_research_papers/bibliography/masterbib.bib}
+% \renewcommand*{\bibfont}{\tiny}
+% Use opensans
+% \usepackage[default,scale=0.95]{opensans}
+\usepackage[sfdefault]{roboto}
+% for strike through
+\usepackage[normalem]{ulem}
+% links, urls, refs
+\definecolor{links}{HTML}{2A1B81}
+% Fedora blue for the theme
+\definecolor{FedoraBlue}{HTML}{2A1B81}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=Green,urlcolor=links}
+% graphics
+\usepackage{graphicx}
+% algorithm
+\usepackage{algorithmic}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{textgreek}
+\usepackage{euler}
+\usepackage{csquotes}
+\usepackage{tabularx}
+\usepackage{booktabs}
+% beamer theme
+% use defaults for theme
+\usetheme[numbering=fraction]{metropolis}
+\usefonttheme[onlymath]{serif}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamercolor{alerted text}{fg=Green}
+\setbeamerfont{note page}{size=\small}
+
+% Not needed in metropolis, but in general footnote citation fixes: https://tex.stackexchange.com/questions/44217/how-can-i-stop-footcite-from-hijacking-my-beamer-columns
+% how to use multiple references to the same footnote: https://tex.stackexchange.com/questions/27763/beamer-multiple-references-to-the-same-footnote
+
+% Disable footnoterule
+\renewcommand{\footnoterule}{}
+
+%% title %%
+\title{Data club: OSB updates}
+\subtitle{\enquote{Show and tell}}
+\author[Ankur Sinha]{Ankur Sinha}
+\date{11/06/2020}
+
+%% document begins %%
+\begin{document}
+
+
+% title frame %%
+\begin{frame}
+  \titlepage{}
+\end{frame}
+%% Three slides for 5 minutes seems good
+%% So, 30 slides at most for 50 minutes
+\begin{frame}[c]
+  \frametitle{OSBv1}
+
+  Demo: \url{www.opensourcebrain.org}
+  \note{Mostly showing various bits, not too many slides needed.}
+
+\end{frame}
+\begin{frame}[c]
+  \frametitle{OSBv1: current status}
+  \begin{itemize}
+    \item Maintenance mode: small bug fixes, minor enhancements:
+      \begin{itemize}
+        \item \href{app.zenhub.com}{Ankur's Kanban board (public)}.
+      \end{itemize}
+      \pause{}
+    \item Consolidation of infrastructure on Google Cloud Services:
+      \begin{itemize}
+        \item kubernetes (k8s):
+          \begin{itemize}
+            \item also container based but,
+            \item better fine grained control of computing resources.
+          \end{itemize}
+        \item Continuous Deployment (CD) pipeline:
+          \begin{itemize}
+            \item GitHub \(\rightarrow{}\) CodeFresh \(\rightarrow{}\) Google cloud \(\rightarrow{}\) live!
+          \end{itemize}
+          \pause{}
+        \item MetaCell:
+          \begin{itemize}
+            \item CloudHarness: cloud infrastructure manager.
+          \end{itemize}
+        \item Test OSBv1 deployment: \url{beta.opensourcebrain.org}.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{OSBv1: future plans}
+  Maintain until OSBv2 reaches feature parity.
+\end{frame}
+\begin{frame}[c]
+  \frametitle{OSBv2: the idea: closing the loop}
+    \begin{itemize}
+      \item Modelling:
+        \begin{itemize}
+          \item NetPyNE:\ Simulation and analysis.
+        \end{itemize}
+      \item Experiments:
+        \begin{itemize}
+          \item NWBExplorer.
+        \end{itemize}
+        \pause{}
+      \item Workspaces:
+        \begin{itemize}
+          \item both in one place,
+          \item sharing and collaboration.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{NWBExplorer revisited}
+  \url{http://nwbexplorer.opensourcebrain.org/}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{NetPyNE UI}
+  \url{http://34.68.113.100/}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{OSBv2: preview}
+  \url{http://www.v2.opensourcebrain.org/}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{OSBv2: what to expect: design mockups}
+  \url{https://www.figma.com} (evolving, not public)
+\end{frame}
+\begin{frame}[c]
+  \frametitle{OSBv2: progress and plans}
+  \begin{itemize}
+    \item Short term (this year):
+      \begin{itemize}
+        \item \href{https://app.zenhub.com/workspaces/open-source-brain-5c4f23e44c15c80eadb6c30d/board}{MetaCell's Kanban Board (public)},
+        \item Outreach: early adopters, tweaks as per use cases,
+        \item OSBv1 sunset: when OSBv2 is ready enough,
+      \end{itemize}
+      \pause{}
+    \item Long term (3--5 years: feature complete OSBv2):
+      \begin{itemize}
+        \item \href{https://airtable.com}{MetaCell: user stories (airtable.com, not public)}.
+      \end{itemize}
+      \pause{}
+    \item Long long term:
+      \begin{itemize}
+        \item Maintenance: user support, bug fixes, security updates, infrastructure updates,
+        \item No end to integrations with new data sources, repositories.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\end{document}
+
